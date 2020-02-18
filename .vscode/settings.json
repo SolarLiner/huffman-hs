@@ -1,0 +1,7 @@
+{
+	"ghcSimple.flag.noNotifySlowRangeType": true,
+	"licenser.author": "Nathan Graule",
+	"licenser.license": "MIT",
+	"licenser.projectName": "HSHuffman",
+	"licenser.disableAutoHeaderInsertion": true
+}

@@ -9,12 +9,15 @@ import           Huffman.Encode
 -- import           Huffman.GraphViz
 import qualified Data.ByteString.Lazy          as BIN
 import           Data.GraphViz
-import           Data.GraphViz.Printing
-import           Data.Text.Lazy
 import           Data.Maybe
-import           Data.Binary                    ( encodeFile )
+import           Data.Binary                    ( encodeFile
+                                                , put
+                                                , Word8
+                                                )
 import           System.IO
 import           System.Environment
+import           Data.Binary.Put                ( Put )
+import           Data.Bits                      ( shiftL )
 
 main :: IO ()
 {- main =
@@ -22,4 +25,4 @@ main :: IO ()
 main = do
   [inp, out] <- getArgs
   s          <- readFile inp
-  encodeFile out $ encode s
+  encodeFile out $ (fromJust . encode) s

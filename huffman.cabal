@@ -26,4 +26,5 @@ executable huffman
         binary -any,
         text -any,
         graphviz -any,
-        bytestring -any
+        bytestring -any,
+        containers -any

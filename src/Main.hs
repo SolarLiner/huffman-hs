@@ -25,4 +25,5 @@ main :: IO ()
 main = do
   [inp, out] <- getArgs
   s          <- readFile inp
-  encodeFile out $ (fromJust . encode) s
+  encodeFile out $ fromJust $ encode s
+  return ()

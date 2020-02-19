@@ -6,7 +6,9 @@
 {-# LANGUAGE TupleSections #-}
 {-# LANGUAGE LambdaCase #-}
 module Huffman.Encode
-  ( encode
+  ( buildAssocList
+  , assignCode
+  , encode
   )
 where
 import           Control.Applicative

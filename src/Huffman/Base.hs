@@ -9,6 +9,7 @@ module Huffman.Base
   , huffman
   )
 where
+import qualified Data.Map                      as Map
 import           Data.Maybe
 import           Data.List
 import           Data.Function
@@ -26,21 +27,11 @@ hFreq = \case
   Leaf f _   -> f
   Node f _ _ -> f
 
-apply :: [a -> b] -> a -> [b]
-apply fs x = map (\f -> f x) fs
-
-zipApply :: (a -> b) -> [a] -> [(a, b)]
-zipApply f = map (\x -> (x, f x))
-
-count :: (Eq a) => a -> [a] -> Int
-count x = foldr ((+) . intOfBool . (== x)) 0
-
-countUniq :: (Eq a) => [a] -> [(a, Int)]
-countUniq s =
-  let uniq     = nub s
-      counters = map count uniq
-      applied  = apply counters s
-  in  zip uniq applied
+countUniq :: (Eq a, Ord a) => [a] -> [(a, Int)]
+countUniq s = sortBy (compare `on` snd) $ Map.assocs $ foldr
+  (\x acc -> Map.insert x (Map.findWithDefault 0 x acc + 1) acc)
+  Map.empty
+  s
 
 hSort = sortBy (compare `on` hFreq)
 
